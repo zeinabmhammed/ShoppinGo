@@ -1,5 +1,5 @@
-import 'package:ecommerce/features/auth/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import '../auth/presentation/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

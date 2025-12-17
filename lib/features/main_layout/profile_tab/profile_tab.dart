@@ -10,97 +10,119 @@ class ProfileTab extends StatelessWidget {
 
       appBar: AppBar(
         backgroundColor: Colors.white,
+        elevation: 0,
         centerTitle: true,
         title: const Text(
-          'Account',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
-          ),
+          "Account",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 25,top: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'Welcome',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  'mohamed.N@gmail.com',
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 35),
 
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(18),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.06),
-                  blurRadius: 12,
-                  offset: const Offset(0, 6),
-                ),
-              ],
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20, top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    "Welcome",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    "mohamed.N@gmail.com",
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
-            child: Column(
-              children: const [
-                _AccountField(
-                  label: 'Your full name',
-                  value: 'Enter your name',
-                ),
-                SizedBox(height: 24),
-                _AccountField(label: 'Your E- mail', value: 'Enter your email'),
-                SizedBox(height: 24),
-                _AccountField(
-                  label: 'Your password',
-                  value: 'Enter your password',
-                  isPassword: true,
-                ),
-                SizedBox(height: 24),
-                _AccountField(
-                  label: 'Your mobile number',
-                  value: 'Enter your mobile number',
-                ),
-                SizedBox(height: 24),
-                _AccountField(
-                  label: 'Your Address',
-                  value: 'Enter your address',
-                  maxLines: 2,
-                ),
-              ],
+
+            const SizedBox(height: 25),
+
+            const AccountField(
+              label: "Your full name",
+              hint: "Enter your name",
             ),
-          ),
-        ],
+            const SizedBox(height: 20),
+
+            const AccountField(
+                label: "Your E-mail",
+                hint: "Enter your email"
+            ),
+            const SizedBox(height: 20),
+
+            const AccountField(
+              label: "Your password",
+              hint: "Enter your password",
+              isPassword: true,
+            ),
+            const SizedBox(height: 20),
+
+            const AccountField(
+              label: "Your mobile number",
+              hint: "Enter your mobile number",
+            ),
+            const SizedBox(height: 20),
+
+            const AccountField(
+              label: "Your Address",
+              hint: "Enter your address",
+            ),
+
+            const SizedBox(height: 30),
+
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  print("Save Changes clicked");
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black87,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                ),
+                child: const Text(
+                  "Save Changes",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class _AccountField extends StatelessWidget {
+class AccountField extends StatelessWidget {
   final String label;
-  final String value;
+  final String hint;
   final bool isPassword;
   final int maxLines;
 
-  const _AccountField({
+  const AccountField({
     super.key,
     required this.label,
-    required this.value,
+    required this.hint,
     this.isPassword = false,
     this.maxLines = 1,
   });
@@ -110,46 +132,36 @@ class _AccountField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Label
         Text(
           label,
           style: const TextStyle(
             fontSize: 18,
+            fontWeight: FontWeight.w600,
             color: Colors.black87,
-            fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 6),
-        // Readonly field style
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 17),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.grey.shade300),
-            color: Colors.grey.shade200,
-          ),
-          child: Row(
-            crossAxisAlignment: maxLines > 1
-                ? CrossAxisAlignment.start
-                : CrossAxisAlignment.center,
-            children: [
-              // Text
-              Expanded(
-                child: Text(
-                  value,
-                  maxLines: maxLines,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-              ),
-              const SizedBox(width: 8),
-              // Edit icon
-              const Icon(
-                Icons.mode_edit_outlined,
-                size: 18,
-                color: Colors.black87,
-              ),
-            ],
+        const SizedBox(height: 8),
+
+        TextFormField(
+          obscureText: isPassword,
+          maxLines: maxLines,
+          decoration: InputDecoration(
+            hintText: hint,
+            filled: true,
+            fillColor: Colors.grey.shade200,
+            suffixIcon: const Icon(Icons.edit, color: Colors.black87),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 16,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.grey.shade300),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Colors.black87, width: 1.2),
+            ),
           ),
         ),
       ],

@@ -1,7 +1,7 @@
 import 'package:ecommerce/core/routes_manager/routes.dart';
-import 'package:ecommerce/features/auth/screens/SignIn/sign_in_screen.dart';
-import 'package:ecommerce/features/auth/screens/SignUp/sign_up_screen.dart';
-import 'package:ecommerce/features/auth/screens/welcome_screen.dart';
+import 'package:ecommerce/features/auth/presentation/screens/SignInScreen/screen/sign_in_screen.dart';
+import 'package:ecommerce/features/auth/presentation/screens/SignUpScreen/screen/sign_up_screen.dart';
+import 'package:ecommerce/features/auth/presentation/welcome_screen.dart';
 import 'package:ecommerce/features/cart/screens/cart_screen.dart';
 import 'package:ecommerce/features/main_layout/main_layout.dart';
 import 'package:ecommerce/features/product_details/presentation/screens/product_details.dart';

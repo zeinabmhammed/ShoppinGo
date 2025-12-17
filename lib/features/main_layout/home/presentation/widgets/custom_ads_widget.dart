@@ -44,16 +44,16 @@ class CustomAdsWidget extends StatelessWidget {
               children: adsImages.map((image) {
                 int index = adsImages.indexOf(image);
                 return Container(
-                  width: 15.w,
-                  height: 13.h,
+                  width: 16.w,
+                  height: 12.h,
                   margin: EdgeInsets.symmetric(
                     horizontal: 6.0.w,
-                    vertical: 30.h,
+                    vertical: 36.h,
                   ),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: currentIndex == index
-                        ? ColorManager.primary
+                        ? Colors.black87
                         : Colors.grey,
                   ),
                 );
